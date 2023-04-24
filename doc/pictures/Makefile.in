@@ -254,10 +254,14 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = wave1.gif wave2.gif
+GIT_FILES = $(wildcard *.gif)
+PUML_FILES = $(wildcard *.puml)
+SVG_FILES = $(PUML_FILES:.puml=.svg)
+EXTRA_DIST = $(GIT_FILES) $(PUML_FILES) $(SVG_FILES)
 all: all-am
 
 .SUFFIXES:
+.SUFFIXES: .puml .svg
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -449,6 +453,11 @@ uninstall-am:
 
 .PRECIOUS: Makefile
 
+
+all: $(SVG_FILES)
+
+.puml.svg:
+	plantuml -tsvg $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

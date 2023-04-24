@@ -663,7 +663,7 @@ static int input_stdio_open(snd_input_t **inputp, const char *file,
 	return err;
 }
 
-int safe_strtoll_base(const char *str, long long *val, int base)
+int _snd_safe_strtoll_base(const char *str, long long *val, int base)
 {
 	char *end;
 	long v;
@@ -679,7 +679,7 @@ int safe_strtoll_base(const char *str, long long *val, int base)
 	return 0;
 }
 
-int safe_strtol_base(const char *str, long *val, int base)
+int _snd_safe_strtol_base(const char *str, long *val, int base)
 {
 	char *end;
 	long v;
@@ -695,7 +695,7 @@ int safe_strtol_base(const char *str, long *val, int base)
 	return 0;
 }
 
-static int safe_strtod(const char *str, double *val)
+int _snd_safe_strtod(const char *str, double *val)
 {
 	char *end;
 	double v;
@@ -1741,6 +1741,8 @@ int snd_config_substitute(snd_config_t *dst, snd_config_t *src)
 		src->u.compound.fields.prev->next = &dst->u.compound.fields;
 	}
 	free(dst->id);
+	if (dst->type == SND_CONFIG_TYPE_STRING)
+		free(dst->u.string);
 	dst->id = src->id;
 	dst->type = src->type;
 	dst->u = src->u;
@@ -2276,7 +2278,7 @@ static int _snd_config_array_merge(snd_config_t *dst, snd_config_t *src, int ind
  *
  * \par Errors:
  * <dl>
- * <dt>-EEXIST<dd>identifier already exists (!overwrite)
+ * <dt>-EEXIST<dd>identifier already exists (!override)
  * <dt>-ENOMEM<dd>not enough memory
  * </dl>
  */
@@ -3919,7 +3921,7 @@ snd_config_t *snd_config = NULL;
 struct finfo {
 	char *name;
 	dev_t dev;
-	ino_t ino;
+	ino64_t ino;
 	time_t mtime;
 };
 
@@ -4062,7 +4064,7 @@ static int snd_config_hooks(snd_config_t *config, snd_config_t *private_data)
 	return err;
 }
 
-static int config_filename_filter(const struct dirent *dirent)
+static int config_filename_filter(const struct dirent64 *dirent)
 {
 	size_t flen;
 
@@ -4100,26 +4102,26 @@ static int config_file_open(snd_config_t *root, const char *filename)
 
 static int config_file_load(snd_config_t *root, const char *fn, int errors)
 {
-	struct stat st;
-	struct dirent **namelist;
+	struct stat64 st;
+	struct dirent64 **namelist;
 	int err, n;
 
 	if (!errors && access(fn, R_OK) < 0)
 		return 1;
-	if (stat(fn, &st) < 0) {
+	if (stat64(fn, &st) < 0) {
 		SNDERR("cannot stat file/directory %s", fn);
 		return 1;
 	}
 	if (!S_ISDIR(st.st_mode))
 		return config_file_open(root, fn);
 #ifndef DOC_HIDDEN
-#if defined(_GNU_SOURCE) && !defined(__NetBSD__) && !defined(__FreeBSD__) && !defined(__sun) && !defined(ANDROID)
-#define SORTFUNC	versionsort
+#if defined(_GNU_SOURCE) && !defined(__NetBSD__) && !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__sun) && !defined(ANDROID)
+#define SORTFUNC	versionsort64
 #else
-#define SORTFUNC	alphasort
+#define SORTFUNC	alphasort64
 #endif
 #endif
-	n = scandir(fn, &namelist, config_filename_filter, SORTFUNC);
+	n = scandir64(fn, &namelist, config_filename_filter, SORTFUNC);
 	if (n > 0) {
 		int j;
 		err = 0;
@@ -4543,9 +4545,9 @@ int snd_config_update_r(snd_config_t **_top, snd_config_update_t **_update, cons
 		c++;
 	}
 	for (k = 0; k < local->count; ++k) {
-		struct stat st;
+		struct stat64 st;
 		struct finfo *lf = &local->finfo[k];
-		if (stat(lf->name, &st) >= 0) {
+		if (stat64(lf->name, &st) >= 0) {
 			lf->dev = st.st_dev;
 			lf->ino = st.st_ino;
 			lf->mtime = st.st_mtime;
