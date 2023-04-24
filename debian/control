@@ -1,18 +1,18 @@
 Source: alsa-lib
 Section: libs
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
-Uploaders: Deepin Packages Builder <packages@deepin.org>
+Maintainer: Debian ALSA Maintainers <pkg-alsa-devel@lists.alioth.debian.org>
+Uploaders: Jordi Mallach <jordi@debian.org>,
            Elimar Riesebieter <riesebie@lxtec.de>,
            Luke Yelavich <themuso@ubuntu.com>
 Build-Depends: debhelper-compat (= 13),
                python3-dev:native,
                libpython3-dev
 Build-Depends-Indep: doxygen, graphviz
-Standards-Version: 4.6.0
+Standards-Version: 4.6.1
 Homepage: https://www.alsa-project.org/
-#Vcs-Git
-#Vcs-Browser
+Vcs-Git: https://salsa.debian.org/alsa-team/alsa-lib.git
+Vcs-Browser: https://salsa.debian.org/alsa-team/alsa-lib
 Rules-Requires-Root: no
 
 Package: libasound2

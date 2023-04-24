@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.59)
-AC_INIT(alsa-lib, 1.2.6.1)
+AC_INIT(alsa-lib, 1.2.8)
 
 AC_CONFIG_SRCDIR([src/control/control.c])
 AC_CONFIG_MACRO_DIR([m4])
@@ -235,6 +235,19 @@ if test "$softfloat" != "yes"; then
   ALSA_DEPLIBS="-lm"
 fi
 
+dnl Check for scandir64
+AC_MSG_CHECKING(for LFS calls)
+AC_TRY_LINK([#include <dirent.h>],
+    [struct dirent64 a; ],
+    [have_lfs=yes],
+    [have_lfs=no])
+if test "$have_lfs" = "yes"; then
+  AC_MSG_RESULT(yes)
+  AC_DEFINE([HAVE_LFS], 1, [Have LFS])
+else
+  AC_MSG_RESULT(no)
+fi
+
 dnl Check for libdl
 AC_MSG_CHECKING(for libdl)
 AC_ARG_WITH(libdl,
@@ -322,7 +335,7 @@ else
 fi
 
 dnl Check for headers
-AC_CHECK_HEADERS([endian.h sys/endian.h sys/shm.h])
+AC_CHECK_HEADERS([endian.h sys/endian.h sys/shm.h malloc.h])
 
 dnl Check for resmgr support...
 AC_MSG_CHECKING(for resmgr support)
@@ -751,8 +764,9 @@ AC_OUTPUT(Makefile doc/Makefile doc/pictures/Makefile doc/doxygen.cfg \
 dnl Create asoundlib.h dynamically according to configure options
 echo "Creating asoundlib.h..."
 cp "$srcdir"/include/asoundlib-head.h include/asoundlib.h
+if test "$ac_cv_header_sys_endian_h" != "yes"; then
 test "$ac_cv_header_endian_h" = "yes" && echo "#include <endian.h>" >> include/asoundlib.h
-if test "$ac_cv_header_sys_endian_h" = "yes"; then
+else
 cat >> include/asoundlib.h <<EOF
 #include <sys/endian.h>
 #ifndef __BYTE_ORDER

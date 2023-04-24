@@ -107,17 +107,17 @@ CONFIG_HEADER = $(top_builddir)/include/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 libcontrol_la_LIBADD =
-am__libcontrol_la_SOURCES_DIST = cards.c tlv.c namehint.c hcontrol.c \
-	control.c control_hw.c control_empty.c setup.c ctlparse.c \
-	control_plugin.c control_symbols.c control_remap.c \
+am__libcontrol_la_SOURCES_DIST = cards.c tlv.c eld.c namehint.c \
+	hcontrol.c control.c control_hw.c control_empty.c setup.c \
+	ctlparse.c control_plugin.c control_symbols.c control_remap.c \
 	control_shm.c control_ext.c
 @BUILD_CTL_PLUGIN_REMAP_TRUE@am__objects_1 = control_remap.lo
 @BUILD_CTL_PLUGIN_SHM_TRUE@am__objects_2 = control_shm.lo
 @BUILD_CTL_PLUGIN_EXT_TRUE@am__objects_3 = control_ext.lo
-am_libcontrol_la_OBJECTS = cards.lo tlv.lo namehint.lo hcontrol.lo \
-	control.lo control_hw.lo control_empty.lo setup.lo ctlparse.lo \
-	control_plugin.lo control_symbols.lo $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3)
+am_libcontrol_la_OBJECTS = cards.lo tlv.lo eld.lo namehint.lo \
+	hcontrol.lo control.lo control_hw.lo control_empty.lo setup.lo \
+	ctlparse.lo control_plugin.lo control_symbols.lo \
+	$(am__objects_1) $(am__objects_2) $(am__objects_3)
 libcontrol_la_OBJECTS = $(am_libcontrol_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -143,8 +143,9 @@ am__depfiles_remade = ./$(DEPDIR)/cards.Plo ./$(DEPDIR)/control.Plo \
 	./$(DEPDIR)/control_hw.Plo ./$(DEPDIR)/control_plugin.Plo \
 	./$(DEPDIR)/control_remap.Plo ./$(DEPDIR)/control_shm.Plo \
 	./$(DEPDIR)/control_symbols.Plo ./$(DEPDIR)/ctlparse.Plo \
-	./$(DEPDIR)/hcontrol.Plo ./$(DEPDIR)/namehint.Plo \
-	./$(DEPDIR)/setup.Plo ./$(DEPDIR)/tlv.Plo
+	./$(DEPDIR)/eld.Plo ./$(DEPDIR)/hcontrol.Plo \
+	./$(DEPDIR)/namehint.Plo ./$(DEPDIR)/setup.Plo \
+	./$(DEPDIR)/tlv.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -325,8 +326,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 EXTRA_LTLIBRARIES = libcontrol.la
-libcontrol_la_SOURCES = cards.c tlv.c namehint.c hcontrol.c control.c \
-	control_hw.c control_empty.c setup.c ctlparse.c \
+libcontrol_la_SOURCES = cards.c tlv.c eld.c namehint.c hcontrol.c \
+	control.c control_hw.c control_empty.c setup.c ctlparse.c \
 	control_plugin.c control_symbols.c $(am__append_1) \
 	$(am__append_2) $(am__append_3)
 noinst_HEADERS = control_local.h
@@ -384,6 +385,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/control_shm.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/control_symbols.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ctlparse.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/eld.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hcontrol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/namehint.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/setup.Plo@am__quote@ # am--include-marker
@@ -556,6 +558,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/control_shm.Plo
 	-rm -f ./$(DEPDIR)/control_symbols.Plo
 	-rm -f ./$(DEPDIR)/ctlparse.Plo
+	-rm -f ./$(DEPDIR)/eld.Plo
 	-rm -f ./$(DEPDIR)/hcontrol.Plo
 	-rm -f ./$(DEPDIR)/namehint.Plo
 	-rm -f ./$(DEPDIR)/setup.Plo
@@ -615,6 +618,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/control_shm.Plo
 	-rm -f ./$(DEPDIR)/control_symbols.Plo
 	-rm -f ./$(DEPDIR)/ctlparse.Plo
+	-rm -f ./$(DEPDIR)/eld.Plo
 	-rm -f ./$(DEPDIR)/hcontrol.Plo
 	-rm -f ./$(DEPDIR)/namehint.Plo
 	-rm -f ./$(DEPDIR)/setup.Plo

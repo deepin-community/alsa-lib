@@ -134,3 +134,9 @@ ALSA_1.1.6 {
 
     snd_dlopen;
 } ALSA_0.9.7;
+
+ALSA_1.2.6 {
+  global:
+
+    _snd_safe_strto*;
+} ALSA_1.1.6;
