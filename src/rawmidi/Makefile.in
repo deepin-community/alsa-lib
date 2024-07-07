@@ -91,11 +91,11 @@ host_triplet = @host@
 @BUILD_SEQ_TRUE@am__append_1 = rawmidi_virt.c
 subdir = src/rawmidi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/attributes.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/ac_check_attribute_symver.m4 \
+	$(top_srcdir)/m4/attributes.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(noinst_HEADERS) \
@@ -106,10 +106,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 librawmidi_la_LIBADD =
 am__librawmidi_la_SOURCES_DIST = rawmidi.c rawmidi_hw.c \
-	rawmidi_symbols.c rawmidi_virt.c
+	rawmidi_symbols.c ump.c rawmidi_virt.c
 @BUILD_SEQ_TRUE@am__objects_1 = rawmidi_virt.lo
 am_librawmidi_la_OBJECTS = rawmidi.lo rawmidi_hw.lo rawmidi_symbols.lo \
-	$(am__objects_1)
+	ump.lo $(am__objects_1)
 librawmidi_la_OBJECTS = $(am_librawmidi_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -132,7 +132,7 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/rawmidi.Plo \
 	./$(DEPDIR)/rawmidi_hw.Plo ./$(DEPDIR)/rawmidi_symbols.Plo \
-	./$(DEPDIR)/rawmidi_virt.Plo
+	./$(DEPDIR)/rawmidi_virt.Plo ./$(DEPDIR)/ump.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -313,9 +313,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 EXTRA_LTLIBRARIES = librawmidi.la
-librawmidi_la_SOURCES = rawmidi.c rawmidi_hw.c rawmidi_symbols.c \
+librawmidi_la_SOURCES = rawmidi.c rawmidi_hw.c rawmidi_symbols.c ump.c \
 	$(am__append_1)
-noinst_HEADERS = rawmidi_local.h
+noinst_HEADERS = rawmidi_local.h ump_local.h
 AM_CPPFLAGS = -I$(top_srcdir)/include
 all: all-am
 
@@ -364,6 +364,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rawmidi_hw.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rawmidi_symbols.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rawmidi_virt.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ump.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -526,6 +527,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/rawmidi_hw.Plo
 	-rm -f ./$(DEPDIR)/rawmidi_symbols.Plo
 	-rm -f ./$(DEPDIR)/rawmidi_virt.Plo
+	-rm -f ./$(DEPDIR)/ump.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -575,6 +577,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/rawmidi_hw.Plo
 	-rm -f ./$(DEPDIR)/rawmidi_symbols.Plo
 	-rm -f ./$(DEPDIR)/rawmidi_virt.Plo
+	-rm -f ./$(DEPDIR)/ump.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

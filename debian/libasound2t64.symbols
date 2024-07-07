@@ -1,4 +1,4 @@
-libasound.so.2 libasound2 #MINVER#
+libasound.so.2 libasound2t64 #MINVER#
 * Build-Depends-Package: libasound2-dev
  ALSA_0.9.0@ALSA_0.9.0 1.0.16
  ALSA_0.9.0rc4@ALSA_0.9.0rc4 1.0.16
@@ -8,7 +8,9 @@ libasound.so.2 libasound2 #MINVER#
  ALSA_0.9.7@ALSA_0.9.7 1.0.16
  ALSA_0.9@ALSA_0.9 1.0.16
  ALSA_1.1.6@ALSA_1.1.6 1.1.6
+ ALSA_1.2.10@ALSA_1.2.10 1.2.10
  ALSA_1.2.6@ALSA_1.2.6 1.2.7.1
+ ALSA_1.2.9@ALSA_1.2.9 1.2.9
  __snd_ctl_empty_open_dlsym_control_001@ALSA_0.9 1.2.5
  __snd_ctl_hw_open_dlsym_control_001@ALSA_0.9 1.0.16
  __snd_ctl_remap_open_dlsym_control_001@ALSA_0.9 1.2.5
@@ -473,6 +475,9 @@ libasound.so.2 libasound2 #MINVER#
  snd_ctl_shm_open@ALSA_0.9 1.0.16
  snd_ctl_subscribe_events@ALSA_0.9 1.0.16
  snd_ctl_type@ALSA_0.9 1.0.16
+ snd_ctl_ump_block_info@ALSA_1.2.10 1.2.10
+ snd_ctl_ump_endpoint_info@ALSA_1.2.10 1.2.10
+ snd_ctl_ump_next_device@ALSA_1.2.10 1.2.10
  snd_ctl_wait@ALSA_0.9 1.0.16
  snd_determine_driver@ALSA_0.9 1.0.16
  snd_device_name_free_hint@ALSA_0.9 1.0.16
@@ -916,6 +921,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_pcm_hw_params_get_channels_max@ALSA_0.9.0rc4 1.0.16
  snd_pcm_hw_params_get_channels_min@ALSA_0.9 1.0.16
  snd_pcm_hw_params_get_channels_min@ALSA_0.9.0rc4 1.0.16
+ snd_pcm_hw_params_get_drain_silence@ALSA_1.2.9 1.2.9
  snd_pcm_hw_params_get_export_buffer@ALSA_0.9 1.0.16
  snd_pcm_hw_params_get_fifo_size@ALSA_0.9 1.0.16
  snd_pcm_hw_params_get_format@ALSA_0.9 1.0.16
@@ -965,6 +971,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_pcm_hw_params_is_half_duplex@ALSA_0.9 1.0.16
  snd_pcm_hw_params_is_joint_duplex@ALSA_0.9 1.0.16
  snd_pcm_hw_params_is_monotonic@ALSA_0.9 1.0.17
+ snd_pcm_hw_params_is_perfect_drain@ALSA_1.2.9 1.2.9
  snd_pcm_hw_params_malloc@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_access@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_access_first@ALSA_0.9 1.0.16
@@ -1002,6 +1009,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_pcm_hw_params_set_channels_minmax@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_channels_near@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_channels_near@ALSA_0.9.0rc4 1.0.16
+ snd_pcm_hw_params_set_drain_silence@ALSA_1.2.9 1.2.9
  snd_pcm_hw_params_set_export_buffer@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_format@ALSA_0.9 1.0.16
  snd_pcm_hw_params_set_format_first@ALSA_0.9 1.0.16
@@ -1220,6 +1228,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_pcm_subformat_mask_sizeof@ALSA_0.9 1.0.16
  snd_pcm_subformat_mask_test@ALSA_0.9 1.0.16
  snd_pcm_subformat_name@ALSA_0.9 1.0.16
+ snd_pcm_subformat_value@ALSA_0.9 1.2.11
  snd_pcm_sw_params@ALSA_0.9 1.0.16
  snd_pcm_sw_params_copy@ALSA_0.9 1.0.16
  snd_pcm_sw_params_current@ALSA_0.9 1.0.16
@@ -1350,16 +1359,24 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_client_info_get_error_bounce@ALSA_0.9 1.0.16
  snd_seq_client_info_get_event_filter@ALSA_0.9 1.0.16
  snd_seq_client_info_get_event_lost@ALSA_0.9 1.0.16
+ snd_seq_client_info_get_midi_version@ALSA_1.2.10 1.2.10
  snd_seq_client_info_get_name@ALSA_0.9 1.0.16
  snd_seq_client_info_get_num_ports@ALSA_0.9 1.0.16
  snd_seq_client_info_get_pid@ALSA_0.9 1.1.1
  snd_seq_client_info_get_type@ALSA_0.9 1.0.16
+ snd_seq_client_info_get_ump_conversion@ALSA_1.2.10 1.2.11
+ snd_seq_client_info_get_ump_group_enabled@ALSA_1.2.10 1.2.11
+ snd_seq_client_info_get_ump_groupless_enabled@ALSA_1.2.10 1.2.10
  snd_seq_client_info_malloc@ALSA_0.9 1.0.16
  snd_seq_client_info_set_broadcast_filter@ALSA_0.9 1.0.16
  snd_seq_client_info_set_client@ALSA_0.9 1.0.16
  snd_seq_client_info_set_error_bounce@ALSA_0.9 1.0.16
  snd_seq_client_info_set_event_filter@ALSA_0.9 1.0.16
+ snd_seq_client_info_set_midi_version@ALSA_1.2.10 1.2.10
  snd_seq_client_info_set_name@ALSA_0.9 1.0.16
+ snd_seq_client_info_set_ump_conversion@ALSA_1.2.10 1.2.11
+ snd_seq_client_info_set_ump_group_enabled@ALSA_1.2.10 1.2.11
+ snd_seq_client_info_set_ump_groupless_enabled@ALSA_1.2.10 1.2.10
  snd_seq_client_info_sizeof@ALSA_0.9 1.0.16
  snd_seq_client_pool_copy@ALSA_0.9 1.0.16
  snd_seq_client_pool_free@ALSA_0.9 1.0.16
@@ -1416,6 +1433,8 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_get_queue_tempo@ALSA_0.9 1.0.16
  snd_seq_get_queue_timer@ALSA_0.9 1.0.16
  snd_seq_get_queue_usage@ALSA_0.9 1.0.16
+ snd_seq_get_ump_block_info@ALSA_1.2.10 1.2.10
+ snd_seq_get_ump_endpoint_info@ALSA_1.2.10 1.2.10
  snd_seq_hw_open@ALSA_0.9 1.0.16
  snd_seq_name@ALSA_0.9 1.0.16
  snd_seq_nonblock@ALSA_0.9 1.0.16
@@ -1430,6 +1449,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_port_info_get_addr@ALSA_0.9 1.0.16
  snd_seq_port_info_get_capability@ALSA_0.9 1.0.16
  snd_seq_port_info_get_client@ALSA_0.9 1.0.16
+ snd_seq_port_info_get_direction@ALSA_1.2.10 1.2.10
  snd_seq_port_info_get_midi_channels@ALSA_0.9 1.0.16
  snd_seq_port_info_get_midi_voices@ALSA_0.9 1.0.16
  snd_seq_port_info_get_name@ALSA_0.9 1.0.16
@@ -1441,11 +1461,13 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_port_info_get_timestamp_real@ALSA_0.9 1.0.16
  snd_seq_port_info_get_timestamping@ALSA_0.9 1.0.16
  snd_seq_port_info_get_type@ALSA_0.9 1.0.16
+ snd_seq_port_info_get_ump_group@ALSA_1.2.10 1.2.10
  snd_seq_port_info_get_write_use@ALSA_0.9 1.0.16
  snd_seq_port_info_malloc@ALSA_0.9 1.0.16
  snd_seq_port_info_set_addr@ALSA_0.9 1.0.16
  snd_seq_port_info_set_capability@ALSA_0.9 1.0.16
  snd_seq_port_info_set_client@ALSA_0.9 1.0.16
+ snd_seq_port_info_set_direction@ALSA_1.2.10 1.2.10
  snd_seq_port_info_set_midi_channels@ALSA_0.9 1.0.16
  snd_seq_port_info_set_midi_voices@ALSA_0.9 1.0.16
  snd_seq_port_info_set_name@ALSA_0.9 1.0.16
@@ -1456,6 +1478,7 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_port_info_set_timestamp_real@ALSA_0.9 1.0.16
  snd_seq_port_info_set_timestamping@ALSA_0.9 1.0.16
  snd_seq_port_info_set_type@ALSA_0.9 1.0.16
+ snd_seq_port_info_set_ump_group@ALSA_1.2.10 1.2.10
  snd_seq_port_info_sizeof@ALSA_0.9 1.0.16
  snd_seq_port_subscribe_copy@ALSA_0.9 1.0.16
  snd_seq_port_subscribe_free@ALSA_0.9 1.0.16
@@ -1567,11 +1590,13 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_set_bit@ALSA_0.9 1.0.16
  snd_seq_set_client_event_filter@ALSA_0.9 1.0.16
  snd_seq_set_client_info@ALSA_0.9 1.0.16
+ snd_seq_set_client_midi_version@ALSA_1.2.10 1.2.10
  snd_seq_set_client_name@ALSA_0.9 1.0.16
  snd_seq_set_client_pool@ALSA_0.9 1.0.16
  snd_seq_set_client_pool_input@ALSA_0.9 1.0.16
  snd_seq_set_client_pool_output@ALSA_0.9 1.0.16
  snd_seq_set_client_pool_output_room@ALSA_0.9 1.0.16
+ snd_seq_set_client_ump_conversion@ALSA_1.2.10 1.2.10
  snd_seq_set_input_buffer_size@ALSA_0.9 1.0.16
  snd_seq_set_output_buffer_size@ALSA_0.9 1.0.16
  snd_seq_set_port_info@ALSA_0.9 1.0.16
@@ -1579,6 +1604,8 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_set_queue_tempo@ALSA_0.9 1.0.16
  snd_seq_set_queue_timer@ALSA_0.9 1.0.16
  snd_seq_set_queue_usage@ALSA_0.9 1.0.16
+ snd_seq_set_ump_block_info@ALSA_1.2.10 1.2.10
+ snd_seq_set_ump_endpoint_info@ALSA_1.2.10 1.2.10
  snd_seq_subscribe_port@ALSA_0.9 1.0.16
  snd_seq_sync_output_queue@ALSA_0.9 1.0.16
  snd_seq_system_info@ALSA_0.9 1.0.16
@@ -1593,6 +1620,11 @@ libasound.so.2 libasound2 #MINVER#
  snd_seq_system_info_malloc@ALSA_0.9 1.0.16
  snd_seq_system_info_sizeof@ALSA_0.9 1.0.16
  snd_seq_type@ALSA_0.9 1.0.16
+ snd_seq_ump_event_input@ALSA_1.2.10 1.2.10
+ snd_seq_ump_event_output@ALSA_1.2.10 1.2.10
+ snd_seq_ump_event_output_buffer@ALSA_1.2.10 1.2.10
+ snd_seq_ump_event_output_direct@ALSA_1.2.10 1.2.10
+ snd_seq_ump_extract_output@ALSA_1.2.10 1.2.10
  snd_seq_unset_bit@ALSA_0.9 1.0.17
  snd_seq_unsubscribe_port@ALSA_0.9 1.0.16
  snd_shm_area_create@ALSA_0.9 1.0.16
@@ -1697,6 +1729,60 @@ libasound.so.2 libasound2 #MINVER#
  snd_tlv_convert_to_dB@ALSA_0.9 1.0.16
  snd_tlv_get_dB_range@ALSA_0.9 1.0.16
  snd_tlv_parse_dB_info@ALSA_0.9 1.0.16
+ snd_ump_block_info@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_copy@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_free@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_active@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_block_id@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_card@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_device@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_direction@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_first_group@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_flags@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_midi_ci_version@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_name@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_num_groups@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_sysex8_streams@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_get_ui_hint@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_malloc@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_set_block_id@ALSA_1.2.10 1.2.10
+ snd_ump_block_info_sizeof@ALSA_1.2.10 1.2.10
+ snd_ump_close@ALSA_1.2.10 1.2.10
+ snd_ump_drain@ALSA_1.2.10 1.2.10
+ snd_ump_drop@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_copy@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_free@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_card@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_device@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_family_id@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_flags@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_manufacturer_id@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_model_id@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_name@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_num_blocks@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_product_id@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_protocol@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_protocol_caps@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_sw_revision@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_get_version@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_malloc@ALSA_1.2.10 1.2.10
+ snd_ump_endpoint_info_sizeof@ALSA_1.2.10 1.2.10
+ snd_ump_msg_sysex_expand@ALSA_1.2.10 1.2.10
+ snd_ump_name@ALSA_1.2.10 1.2.10
+ snd_ump_nonblock@ALSA_1.2.10 1.2.10
+ snd_ump_open@ALSA_1.2.10 1.2.10
+ snd_ump_poll_descriptors@ALSA_1.2.10 1.2.10
+ snd_ump_poll_descriptors_count@ALSA_1.2.10 1.2.10
+ snd_ump_poll_descriptors_revents@ALSA_1.2.10 1.2.10
+ snd_ump_rawmidi@ALSA_1.2.10 1.2.10
+ snd_ump_rawmidi_info@ALSA_1.2.10 1.2.10
+ snd_ump_rawmidi_params@ALSA_1.2.10 1.2.10
+ snd_ump_rawmidi_params_current@ALSA_1.2.10 1.2.10
+ snd_ump_rawmidi_status@ALSA_1.2.10 1.2.10
+ snd_ump_read@ALSA_1.2.10 1.2.10
+ snd_ump_tread@ALSA_1.2.10 1.2.10
+ snd_ump_write@ALSA_1.2.10 1.2.10
  snd_use_case_free_list@ALSA_0.9 1.0.24.1
  snd_use_case_get@ALSA_0.9 1.0.24.1
  snd_use_case_get_list@ALSA_0.9 1.0.24.1

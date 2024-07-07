@@ -1,3 +1,78 @@
+alsa-lib (1.2.12-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update Standards-Version to 4.7.0, with no changes needed.
+  * Fix typo in license name for LGPL in copyright file (closes: #1061276).
+
+ -- Jordi Mallach <jordi@debian.org>  Thu, 27 Jun 2024 15:49:26 +0200
+
+alsa-lib (1.2.11-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update watch and copyright files for new https-based download URL.
+  * Drop cherry-picked patches, now included in the release.
+  * Update copyright years.
+  * Merge NMU changes for the 64-bit time_t transition. Many thanks, vorlon!
+  * Update symbols files.
+
+ -- Jordi Mallach <jordi@debian.org>  Thu, 29 Feb 2024 19:27:15 +0100
+
+alsa-lib (1.2.10-3.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Call --add-udeb=libasound2-udeb to fix shlibs for udebs after the
+    deb rename.  Closes: #1064974.
+
+ -- Steve Langasek <vorlon@debian.org>  Wed, 28 Feb 2024 18:48:52 +0000
+
+alsa-lib (1.2.10-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1061886
+
+ -- Steve Langasek <vorlon@debian.org>  Wed, 28 Feb 2024 00:56:04 +0000
+
+alsa-lib (1.2.10-3) unstable; urgency=medium
+
+  * Add upstream patch to fix MIDI playback in some apps (closes: #1055756).
+
+ -- Jordi Mallach <jordi@debian.org>  Wed, 13 Dec 2023 01:53:29 +0100
+
+alsa-lib (1.2.10-2) unstable; urgency=medium
+
+  [ Mohammed Bilal ]
+  * Add upstream patch to fix ump header detection (Closes: #1052720)
+
+  [ Jordi Mallach ]
+  * Add patches to fix segfaults with 32 bit binaries (closes: #1051901).
+
+ -- Jordi Mallach <jordi@debian.org>  Tue, 12 Dec 2023 15:34:50 +0100
+
+alsa-lib (1.2.10-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patch from previous upload, cherry-picked from upstream git.
+  * Update symbols files with newly added symbols.
+
+ -- Jordi Mallach <jordi@debian.org>  Wed, 13 Sep 2023 01:06:28 +0200
+
+alsa-lib (1.2.9-2) unstable; urgency=medium
+
+  * Add upstream patch to fix SNDRV_PCM_IOCTL_SW_PARAMS ioctl. Thanks
+    to Paul Tagliamonte for the report and Dan Cross for the upstream
+    fix (closes: #1041868).
+
+ -- Jordi Mallach <jordi@debian.org>  Wed, 23 Aug 2023 18:24:39 +0200
+
+alsa-lib (1.2.9-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update symbols file with newly added symbols.
+  * Update Standards-Version to 4.6.2, with no changes needed.
+  * Update copyright years.
+
+ -- Jordi Mallach <jordi@debian.org>  Tue, 13 Jun 2023 11:51:51 +0200
+
 alsa-lib (1.2.8-1) unstable; urgency=medium
 
   * New upstream release.
