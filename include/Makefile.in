@@ -96,7 +96,7 @@ host_triplet = @host@
 @BUILD_PCM_PLUGIN_EXTPLUG_TRUE@@BUILD_PCM_TRUE@am__append_6 = pcm_external.h pcm_extplug.h
 @BUILD_PCM_PLUGIN_EXTPLUG_FALSE@@BUILD_PCM_PLUGIN_IOPLUG_TRUE@@BUILD_PCM_TRUE@am__append_7 = pcm_external.h
 @BUILD_PCM_PLUGIN_IOPLUG_TRUE@@BUILD_PCM_TRUE@am__append_8 = pcm_ioplug.h
-@BUILD_RAWMIDI_TRUE@am__append_9 = rawmidi.h
+@BUILD_RAWMIDI_TRUE@am__append_9 = rawmidi.h ump.h ump_msg.h
 @BUILD_HWDEP_TRUE@am__append_10 = hwdep.h
 @BUILD_MIXER_TRUE@am__append_11 = mixer.h mixer_abst.h
 @BUILD_SEQ_TRUE@am__append_12 = seq_event.h seq.h seqmid.h seq_midi_event.h
@@ -105,11 +105,11 @@ host_triplet = @host@
 @BUILD_ALISP_TRUE@am__append_15 = alisp.h
 subdir = include
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/attributes.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/ac_check_attribute_symver.m4 \
+	$(top_srcdir)/m4/attributes.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__alsainclude_HEADERS_DIST) \
@@ -149,9 +149,9 @@ am__alsainclude_HEADERS_DIST = asoundlib.h asoundef.h version.h \
 	global.h input.h output.h error.h conf.h control.h \
 	control_plugin.h control_external.h pcm.h pcm_old.h timer.h \
 	pcm_plugin.h pcm_rate.h pcm_external.h pcm_extplug.h \
-	pcm_ioplug.h rawmidi.h hwdep.h mixer.h mixer_abst.h \
-	seq_event.h seq.h seqmid.h seq_midi_event.h use-case.h \
-	topology.h alisp.h
+	pcm_ioplug.h rawmidi.h ump.h ump_msg.h hwdep.h mixer.h \
+	mixer_abst.h seq_event.h seq.h seqmid.h seq_midi_event.h \
+	use-case.h topology.h alisp.h
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \

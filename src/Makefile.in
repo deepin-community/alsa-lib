@@ -90,31 +90,33 @@ build_triplet = @build@
 host_triplet = @host@
 @BUILD_MIXER_TRUE@am__append_1 = mixer
 @BUILD_MIXER_TRUE@am__append_2 = mixer/libmixer.la
-@BUILD_PCM_TRUE@am__append_3 = pcm timer
-@BUILD_PCM_TRUE@am__append_4 = pcm/libpcm.la timer/libtimer.la
-@BUILD_RAWMIDI_TRUE@am__append_5 = rawmidi
-@BUILD_RAWMIDI_TRUE@am__append_6 = rawmidi/librawmidi.la
-@BUILD_HWDEP_TRUE@am__append_7 = hwdep
-@BUILD_HWDEP_TRUE@am__append_8 = hwdep/libhwdep.la
-@BUILD_SEQ_TRUE@am__append_9 = seq
-@BUILD_SEQ_TRUE@am__append_10 = seq/libseq.la
-@BUILD_UCM_TRUE@am__append_11 = ucm
-@BUILD_UCM_TRUE@am__append_12 = ucm/libucm.la
-@BUILD_ALISP_TRUE@am__append_13 = alisp
-@BUILD_ALISP_TRUE@am__append_14 = alisp/libalisp.la
+@BUILD_PCM_TRUE@@VERSIONED_SYMBOLS_TRUE@am__append_3 = -DHAVE_PCM_SYMS -DHAVE_TIMER_SYMS
+@BUILD_PCM_TRUE@am__append_4 = pcm timer
+@BUILD_PCM_TRUE@am__append_5 = pcm/libpcm.la timer/libtimer.la
+@BUILD_RAWMIDI_TRUE@am__append_6 = rawmidi
+@BUILD_RAWMIDI_TRUE@am__append_7 = rawmidi/librawmidi.la
+@BUILD_HWDEP_TRUE@am__append_8 = hwdep
+@BUILD_HWDEP_TRUE@am__append_9 = hwdep/libhwdep.la
+@BUILD_SEQ_TRUE@am__append_10 = seq
+@BUILD_SEQ_TRUE@am__append_11 = seq/libseq.la
+@BUILD_UCM_TRUE@am__append_12 = ucm
+@BUILD_UCM_TRUE@am__append_13 = ucm/libucm.la
+@BUILD_ALISP_TRUE@@VERSIONED_SYMBOLS_TRUE@am__append_14 = -DHAVE_ALISP_SYMS
+@BUILD_ALISP_TRUE@am__append_15 = alisp
+@BUILD_ALISP_TRUE@am__append_16 = alisp/libalisp.la
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/attributes.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/ac_check_attribute_symver.m4 \
+	$(top_srcdir)/m4/attributes.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/include/config.h
-CONFIG_CLEAN_FILES = Versions
+CONFIG_CLEAN_FILES = Versions.in
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -146,8 +148,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libasound_la_DEPENDENCIES = control/libcontrol.la $(am__append_2) \
-	$(am__append_4) $(am__append_6) $(am__append_8) \
-	$(am__append_10) $(am__append_12) $(am__append_14)
+	$(am__append_5) $(am__append_7) $(am__append_9) \
+	$(am__append_11) $(am__append_13) $(am__append_16)
 am_libasound_la_OBJECTS = conf.lo confeval.lo confmisc.lo input.lo \
 	output.lo async.lo error.lo dlmisc.lo socket.lo shmarea.lo \
 	userfile.lo names.lo
@@ -243,7 +245,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = control mixer pcm timer rawmidi hwdep seq ucm alisp \
 	conf
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Versions.in \
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Versions.in.in \
 	$(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
@@ -402,24 +404,28 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = Versions
+EXTRA_DIST = Versions.in.in
 COMPATNUM = @LIBTOOL_VERSION_INFO@
 @VERSIONED_SYMBOLS_FALSE@VSYMS = 
 @VERSIONED_SYMBOLS_TRUE@VSYMS = -Wl,--version-script=Versions
+@VERSIONED_SYMBOLS_FALSE@BUILT_SOURCES = 
+@VERSIONED_SYMBOLS_TRUE@BUILT_SOURCES = $(top_builddir)/src/Versions
 @SYMBOLIC_FUNCTIONS_FALSE@SYMFUNCS = 
 @SYMBOLIC_FUNCTIONS_TRUE@SYMFUNCS = -Wl,-Bsymbolic-functions
+VERSION_CPPFLAGS = $(am__append_3) $(am__append_14)
 lib_LTLIBRARIES = libasound.la
 libasound_la_SOURCES = conf.c confeval.c confmisc.c input.c output.c async.c error.c dlmisc.c socket.c shmarea.c userfile.c names.c
-SUBDIRS = control $(am__append_1) $(am__append_3) $(am__append_5) \
-	$(am__append_7) $(am__append_9) $(am__append_11) \
-	$(am__append_13) conf
+SUBDIRS = control $(am__append_1) $(am__append_4) $(am__append_6) \
+	$(am__append_8) $(am__append_10) $(am__append_12) \
+	$(am__append_15) conf
 libasound_la_LIBADD = control/libcontrol.la $(am__append_2) \
-	$(am__append_4) $(am__append_6) $(am__append_8) \
-	$(am__append_10) $(am__append_12) $(am__append_14) \
+	$(am__append_5) $(am__append_7) $(am__append_9) \
+	$(am__append_11) $(am__append_13) $(am__append_16) \
 	@ALSA_DEPLIBS@ $(am__empty)
 libasound_la_LDFLAGS = -version-info $(COMPATNUM) $(VSYMS) $(SYMFUNCS) $(LDFLAGS_NOUNDEFINED)
 AM_CPPFLAGS = -I$(top_srcdir)/include
-all: all-recursive
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
@@ -452,7 +458,7 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-Versions: $(top_builddir)/config.status $(srcdir)/Versions.in
+Versions.in: $(top_builddir)/config.status $(srcdir)/Versions.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
 install-libLTLIBRARIES: $(lib_LTLIBRARIES)
@@ -703,14 +709,16 @@ distdir-am: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-recursive
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-recursive
 all-am: Makefile $(LTLIBRARIES)
 installdirs: installdirs-recursive
 installdirs-am:
 	for dir in "$(DESTDIR)$(libdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-recursive
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
 uninstall: uninstall-recursive
@@ -740,6 +748,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-recursive
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
@@ -833,7 +842,8 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES
 
-.MAKE: $(am__recursive_targets) install-am install-strip
+.MAKE: $(am__recursive_targets) all check install install-am \
+	install-strip
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--depfiles check check-am clean clean-generic \
@@ -853,6 +863,9 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 .PRECIOUS: Makefile
 
+
+$(top_builddir)/src/Versions: $(top_builddir)/src/Versions.in
+	$(COMPILE) -E $(VERSION_CPPFLAGS) -x assembler-with-cpp -o $@ $<
 
 control/libcontrol.la:
 	$(MAKE) -C control libcontrol.la
