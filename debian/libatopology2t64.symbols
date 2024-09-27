@@ -1,4 +1,4 @@
-libatopology.so.2 libatopology2 #MINVER#
+libatopology.so.2 libatopology2t64 #MINVER#
 * Build-Depends-Package: libatopology2-dev
  ALSA_0.9@ALSA_0.9 1.2.1.1
  snd_tplg_add_object@ALSA_0.9 1.2.1.1
