@@ -1,0 +1,13 @@
+diff --git a/include/alsa-symbols.h b/include/alsa-symbols.h
+index 2298cb5..572566d 100644
+--- a/include/alsa-symbols.h
++++ b/include/alsa-symbols.h
+@@ -54,7 +54,7 @@
+ 		default_symbol_version(real, name, version)
+ #else
+ #define use_symbol_version(real, name, version) /* nothing */
+-#if defined(__alpha__) || defined(__mips__)
++#if defined(__alpha__) || defined(__mips__) || defined(__sw_64__)
+ #define use_default_symbol_version(real, name, version) \
+         __asm__ (".weak " ASM_NAME(#name)); \
+         __asm__ (ASM_NAME(#name) " = " ASM_NAME(#real))
