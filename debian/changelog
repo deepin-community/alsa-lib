@@ -1,8 +1,61 @@
-alsa-lib (1.2.12-1deepin1) unstable; urgency=medium
+alsa-lib (1.2.15.3-1) unstable; urgency=medium
 
-  * Revert 64-bit time_t changes.
+  * New upstream release.
 
- -- Tianyu Chen <sweetyfish@deepin.org>  Sun, 07 Jul 2024 19:39:27 +0800
+ -- Jordi Mallach <jordi@debian.org>  Mon, 19 Jan 2026 09:43:18 +0100
+
+alsa-lib (1.2.15.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop previous patch with git master cherry-picks.
+  * Remove redundant Priority control field.
+  * Update Standards-Version to 4.7.3.
+  * Local asoundrc definitions might need tweaking to adapt to the
+    regression fixes. See 010b699 for an idea on the simple change
+    needed on systems with multiple cards using the same driver.
+
+ -- Jordi Mallach <jordi@debian.org>  Mon, 19 Jan 2026 09:42:44 +0100
+
+alsa-lib (1.2.15-2) unstable; urgency=high
+
+  * Add patches up to upstream Git master to fix audio output on many
+    common setups (closes: #1122612). Note that some local setups might
+    need tweaking. More info will come after upstream releases the bugfix.
+
+ -- Jordi Mallach <jordi@debian.org>  Fri, 12 Dec 2025 09:54:39 +0100
+
+alsa-lib (1.2.15-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Rewrite watch file in version 5 format.
+  * Drop gcc15 patch included in new release.
+  * Update symbols file with newly added symbols.
+
+ -- Jordi Mallach <jordi@debian.org>  Wed, 10 Dec 2025 17:53:26 +0100
+
+alsa-lib (1.2.14-2) unstable; urgency=medium
+
+  * Cherry-pick upstream patch to fix build with GCC 15 (closes: #1096298).
+  * Replace mentions of FSF's old postal address with link to licensing page.
+
+ -- Jordi Mallach <jordi@debian.org>  Sun, 14 Sep 2025 22:52:02 +0200
+
+alsa-lib (1.2.14-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update copyright years.
+  * Update Standards-Version to 4.7.2.
+  * Update symbols file for libasound2.
+
+ -- Jordi Mallach <jordi@debian.org>  Mon, 14 Apr 2025 20:26:22 +0200
+
+alsa-lib (1.2.13-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fix path to libasound2's html documentation in doc-base's index.
+  * Update symbols file for libasound2.
+
+ -- Jordi Mallach <jordi@debian.org>  Thu, 02 Jan 2025 01:31:04 +0100
 
 alsa-lib (1.2.12-1) unstable; urgency=medium
 
