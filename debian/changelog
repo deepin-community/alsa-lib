@@ -1,3 +1,10 @@
+alsa-lib (1.2.15.3-1deepin2) unstable; urgency=medium
+
+  * remove lintian-overrides.
+  * 
+
+ -- tunaichao <tunaichao@uniontech.com>  Mon, 09 Feb 2026 14:23:40 +0800
+
 alsa-lib (1.2.15.3-1deepin1) unstable; urgency=medium
 
   * Revert 64-bit time_t changes. 
