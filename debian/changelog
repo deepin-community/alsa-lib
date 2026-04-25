@@ -1,3 +1,9 @@
+alsa-lib (1.2.15.3-1deepin4) unstable; urgency=medium
+
+  * Fix CVE-2026-25068: heap buffer overflow in topology decoder
+
+ -- deepin-ci-robot <packages@deepin.org>  Sat, 25 Apr 2026 14:32:23 +0800
+
 alsa-lib (1.2.15.3-1deepin3) unstable; urgency=medium
 
   * Add sw support.
