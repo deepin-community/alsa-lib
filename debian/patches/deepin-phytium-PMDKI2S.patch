@@ -1,0 +1,140 @@
+--- /dev/null
++++ b/src/conf/cards/PMDKI2S.conf
+@@ -0,0 +1,116 @@
++#
++# Configuration for PMDK-I2S HDMI audio
++#
++
++PMDKI2S.pcm.hdmi.!0 {
++	@args [ CARD AES0 AES1 AES2 AES3 ]
++	@args.CARD {
++		type string
++	}
++	@args.AES0 {
++		type integer
++	}
++	@args.AES1 {
++		type integer
++	}
++	@args.AES2 {
++		type integer
++	}
++	@args.AES3 {
++		type integer
++	}
++	type hooks
++	slave.pcm {
++		type hw
++		card $CARD
++	}
++	hooks.0 {
++		type ctl_elems
++		hook_args [
++			{
++				interface PCM
++				name "IEC958 Playback Default"
++				device 0
++				lock true
++				preserve true
++				value [ $AES0 $AES1 $AES2 $AES3 ]
++			}
++		]
++	}
++}
++
++PMDKI2S.pcm.hdmi.!1 {
++	@args [ CARD AES0 AES1 AES2 AES3 ]
++	@args.CARD {
++		type string
++	}
++	@args.AES0 {
++		type integer
++	}
++	@args.AES1 {
++		type integer
++	}
++	@args.AES2 {
++		type integer
++	}
++	@args.AES3 {
++		type integer
++	}
++	type hooks
++	slave.pcm {
++		type hw
++		card $CARD
++		device 1
++	}
++	hooks.0 {
++		type ctl_elems
++		hook_args [
++			{
++				interface PCM
++				name "IEC958 Playback Default"
++				device 1
++				lock true
++				preserve true
++				value [ $AES0 $AES1 $AES2 $AES3 ]
++			}
++		]
++	}
++}
++
++PMDKI2S.pcm.hdmi.!2 {
++	@args [ CARD AES0 AES1 AES2 AES3 ]
++	@args.CARD {
++		type string
++	}
++	@args.AES0 {
++		type integer
++	}
++	@args.AES1 {
++		type integer
++	}
++	@args.AES2 {
++		type integer
++	}
++	@args.AES3 {
++		type integer
++	}
++	type hooks
++	slave.pcm {
++		type hw
++		card $CARD
++		device 2
++	}
++	hooks.0 {
++		type ctl_elems
++		hook_args [
++			{
++				interface PCM
++				name "IEC958 Playback Default"
++				device 2
++				lock true
++				preserve true
++				value [ $AES0 $AES1 $AES2 $AES3 ]
++			}
++		]
++	}
++}
+--- a/src/conf/cards/aliases.conf
++++ b/src/conf/cards/aliases.conf
+@@ -59,6 +59,8 @@
+ VC4-HDMI cards.vc4-hdmi
+ hda-acpi cards.HDA-Intel
+ 
++PMDK-I2S cards.PMDKI2S
++
+ <confdir:ctl/default.conf>
+ <confdir:pcm/default.conf>
+ <confdir:pcm/dmix.conf>
+--- a/src/conf/cards/Makefile.am
++++ b/src/conf/cards/Makefile.am
+@@ -41,6 +41,7 @@
+ 	NFORCE.conf \
+ 	PC-Speaker.conf \
+ 	pistachio-card.conf \
++	PMDKI2S.conf \
+ 	PMac.conf \
+ 	PMacToonie.conf \
+ 	PS3.conf \
