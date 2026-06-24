@@ -1,3 +1,10 @@
+alsa-lib (1.2.15.3-1deepin5) unstable; urgency=medium
+
+  * fix CVE-2026-56109: double-free in parse_def() in conf.c
+    - add missing return value check in parse_def()
+
+ -- deepin-ci-robot <packages@deepin.org>  Wed, 24 Jun 2026 19:42:00 +0800
+
 alsa-lib (1.2.15.3-1deepin4) unstable; urgency=medium
 
   * Add support for phytium-PMDKI2S.
