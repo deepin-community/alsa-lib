@@ -1,3 +1,9 @@
+alsa-lib (1.2.15.3-1deepin7) unstable; urgency=medium
+
+  * Add support for ljm-audio-card.
+
+ -- qaqland <anguoli@uniontech.com>  Thu, 16 Jul 2026 21:50:55 +0800
+
 alsa-lib (1.2.15.3-1deepin6) unstable; urgency=high
 
   * Fix CVE-2026-25068: heap buffer overflow in topology decoder

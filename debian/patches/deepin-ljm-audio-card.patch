@@ -1,0 +1,28 @@
+--- a/src/conf/cards/Makefile.am
++++ b/src/conf/cards/Makefile.am
+@@ -37,6 +37,7 @@
+ 	ICH4.conf \
+ 	ICH-MODEM.conf \
+ 	Loopback.conf \
++	ljm-audio-card.conf \
+ 	Maestro3.conf \
+ 	NFORCE.conf \
+ 	PC-Speaker.conf \
+--- /dev/null
++++ b/src/conf/cards/ljm-audio-card.conf
+@@ -0,0 +1,15 @@
++#
++# Configuration for LJMicro GP202 (ljm-audio-card) HDMI audio
++#
++
++ljm-audio-card.pcm.hdmi.!0 {
++	@args [ CARD AES0 AES1 AES2 AES3 ]
++	@args.CARD { type string }
++	@args.AES0 { type integer }
++	@args.AES1 { type integer }
++	@args.AES2 { type integer }
++	@args.AES3 { type integer }
++	type hw
++	card $CARD
++	device 0
++}
