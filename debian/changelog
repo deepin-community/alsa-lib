@@ -1,3 +1,9 @@
+alsa-lib (1.2.15.3-1deepin8) unstable; urgency=medium
+
+  * Revert mute handling fix for MINMAX_MUTE type in snd_tlv_convert_to_dB
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 13 Aug 2026 11:03:21 +0800
+
 alsa-lib (1.2.15.3-1deepin7) unstable; urgency=medium
 
   * Add support for ljm-audio-card.
