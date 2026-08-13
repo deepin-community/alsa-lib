@@ -1,0 +1,73 @@
+From 96f23dda144e1f2b3f192022edc191af3c389243 Mon Sep 17 00:00:00 2001
+From: Jaroslav Kysela <perex@perex.cz>
+Date: Fri, 1 May 2026 07:39:58 +0200
+Subject: [PATCH] Revert "snd_tlv_convert_to_dB: Fix mute handling for
+ MINMAX_MUTE type"
+
+This reverts commit 41039b49ad3e20506134864028c77aeaba4c0d51.
+
+SND_CTL_TLVT_DB_MINMAX_MUTE means that the hardware is muted on lowest
+hardware volume value (not on lowest dB value).
+
+Analysis:
+
+Range:  min=0, max=7248
+dB:     min=-2837, max=-6
+dB span: 2831 centibels (28.31 dB)
+
+Volume | After revert/origin | PR#478 behavior
+-------|---------------------|----------------------
+     0 |  MUTE               | MUTE
+     1 |  -2837 (-28.37 dB)  | MUTE <- DIFFERS!
+     2 |  -2837 (-28.37 dB)  | MUTE <- DIFFERS!
+     5 |  -2836 (-28.36 dB)  |  -2836 (-28.36 dB)
+    10 |  -2834 (-28.34 dB)  |  -2834 (-28.34 dB)
+    50 |  -2818 (-28.18 dB)  |  -2818 (-28.18 dB)
+
+Range:  min=0, max=999
+dB:     min=0, max=390
+dB span: 390 centibels (3.90 dB)
+
+Volume | After revert/origin | PR#478 behavior
+-------|---------------------|----------------------
+     0 | MUTE                | MUTE
+     1 |      0 (0.00 dB)    | MUTE <- DIFFERS!
+     2 |      0 (0.00 dB)    | MUTE <- DIFFERS!
+     5 |      1 (0.01 dB)    |      1 (0.01 dB)
+    10 |      3 (0.03 dB)    |      3 (0.03 dB)
+    50 |     19 (0.19 dB)    |     19 (0.19 dB)
+
+Fixes: https://github.com/alsa-project/alsa-lib/issues/504
+Link: https://github.com/alsa-project/alsa-lib/pull/478
+Signed-off-by: Jaroslav Kysela <perex@perex.cz>
+
+diff --git a/src/control/tlv.c b/src/control/tlv.c
+index 271da984..cc60703d 100644
+--- a/src/control/tlv.c
++++ b/src/control/tlv.c
+@@ -246,17 +246,16 @@ int snd_tlv_convert_to_dB(unsigned int *tlv, long rangemin, long rangemax,
+ 		int mindb, maxdb;
+ 		mindb = tlv[SNDRV_CTL_TLVO_DB_MINMAX_MIN];
+ 		maxdb = tlv[SNDRV_CTL_TLVO_DB_MINMAX_MAX];
+-		if (rangemax <= rangemin)
+-			*db_gain = mindb;
++		if (volume <= rangemin || rangemax <= rangemin) {
++			if (type == SND_CTL_TLVT_DB_MINMAX_MUTE)
++				*db_gain = SND_CTL_TLV_DB_GAIN_MUTE;
++			else
++				*db_gain = mindb;
++		} else if (volume >= rangemax)
++			*db_gain = maxdb;
+ 		else
+ 			*db_gain = (maxdb - mindb) * (volume - rangemin) /
+ 				(rangemax - rangemin) + mindb;
+-		if (*db_gain < mindb)
+-			*db_gain = mindb;
+-		if (*db_gain > maxdb)
+-			*db_gain = maxdb;
+-		if (type == SND_CTL_TLVT_DB_MINMAX_MUTE && *db_gain == mindb)
+-			*db_gain = SND_CTL_TLV_DB_GAIN_MUTE;
+ 		return 0;
+ 	}
+ #ifndef HAVE_SOFT_FLOAT
+
