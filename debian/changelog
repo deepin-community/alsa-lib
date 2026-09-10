@@ -1,3 +1,9 @@
+alsa-lib (1.2.15.3-1deepin8) unstable; urgency=medium
+
+  * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
+
+ -- tunaichao <tunaichao@uniontech.com>  Thu, 10 Sep 2026 16:28:07 +0800
+
 alsa-lib (1.2.15.3-1deepin7) unstable; urgency=medium
 
   * Add support for ljm-audio-card.
