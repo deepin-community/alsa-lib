@@ -4,3 +4,4 @@ CVE-2026-25068.patch
 deepin-phytium-PMDKI2S.patch
 CVE-2026-56109.patch
 deepin-ljm-audio-card.patch
+fix-tlv-revert-mute-handling-minmax-mute.patch
